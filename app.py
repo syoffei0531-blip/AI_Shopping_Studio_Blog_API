@@ -55,9 +55,14 @@ def ranking():
 
     try:
 
+        headers = {
+            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app"
+        }
+
         response = requests.get(
             url,
             params=params,
+            headers=headers,
             timeout=20
         )
 
@@ -112,7 +117,7 @@ def search():
     try:
 
         headers = {
-            "Referer": "https://n8n-production-2e19.up.railway.app/"
+            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app"
         }
 
         response = requests.get(
