@@ -160,17 +160,17 @@ def search():
 
         items = []
 
-        for item in data["Items"]:
-            product = item["Item"]
-
+        for item in data.get("Items", []):
+            product = item.get("Item", {})
+            
             items.append({
-                "title": product["itemName"],
-                "price": product["itemPrice"],
-                "url": product["itemUrl"],
-                "image": product["mediumImageUrls"][0]["imageUrl"],
-                "shop": product["shopName"],
-                "reviewAverage": product["reviewAverage"],
-                "reviewCount": product["reviewCount"]
+                "title": product.get("itemName"),
+                "price": product.get("itemPrice"),
+                "url": product.get("itemUrl"),
+                "image": product.get("mediumImageUrls", [{}])[0].get("imageUrl", ""),
+                "shop": product.get("shopName"),
+                "reviewAverage": product.get("reviewAverage"),
+                "reviewCount": product.get("reviewCount")
             })
 
         return jsonify({
