@@ -96,10 +96,6 @@ def ranking():
                 "genreId": product.get("genreId"),
                 "shopUrl": product.get("shopUrl"),
                 "affiliateUrl": product.get("affiliateUrl"),
-                "description": product.get("itemCaption"),
-                "availability": product.get("availability"),
-                "pointRate": product.get("pointRate"),
-                "affiliateUrl": product.get("affiliateUrl"),
             })
 
         return jsonify({
@@ -173,15 +169,24 @@ def search():
 
         for item in data.get("Items", []):
             product = item.get("Item", {})
-            
+
             items.append({
                 "title": product.get("itemName"),
                 "price": product.get("itemPrice"),
                 "url": product.get("itemUrl"),
                 "image": product.get("mediumImageUrls", [{}])[0].get("imageUrl", ""),
                 "shop": product.get("shopName"),
+                "shopUrl": product.get("shopUrl"),
+
                 "reviewAverage": product.get("reviewAverage"),
-                "reviewCount": product.get("reviewCount")
+                "reviewCount": product.get("reviewCount"),
+
+                "description": product.get("itemCaption"),
+                "availability": product.get("availability"),
+                "pointRate": product.get("pointRate"),
+                "genreId": product.get("genreId"),
+
+                "affiliateUrl": product.get("affiliateUrl")
             })
 
         return jsonify({
