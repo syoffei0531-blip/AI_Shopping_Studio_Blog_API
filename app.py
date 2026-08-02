@@ -45,7 +45,7 @@ def ranking():
             "error": "RAKUTEN_APP_ID not configured"
         }), 500
 
-    url = "https://openapi.rakuten.co.jp/ichibaranking/api/IchibaItem/Ranking/20220601"
+    url = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
     params = {
         "applicationId": RAKUTEN_APP_ID,
         "accessKey": RAKUTEN_ACCESS_KEY,
@@ -97,7 +97,7 @@ def search():
             "message": "keyword is required"
         }), 400
 
-    url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601"
+    url = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 
     params = {
         "applicationId": RAKUTEN_APP_ID,
