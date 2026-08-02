@@ -72,10 +72,27 @@ def ranking():
         print("STATUS =", response.status_code)
         print("BODY =", response.text)
 
+        data = response.json()
+
+        items = []
+
+        for item in data["Items"]:
+            product = item["Item"]
+
+            items.append({
+                "title": product["itemName"],
+                "price": product["itemPrice"],
+                "url": product["itemUrl"],
+                "image": product["mediumImageUrls"][0]["imageUrl"],
+                "shop": product["shopName"],
+                "reviewAverage": product["reviewAverage"],
+                "reviewCount": product["reviewCount"]
+            })
+
         return jsonify({
-            "url": response.request.url,
-            "status": response.status_code,
-            "body": response.text
+            "success": True,
+            "count": len(items),
+            "items": items
         })
 
     except Exception as e:
