@@ -64,12 +64,12 @@ def ranking():
         print("URL =", response.request.url)
         print("STATUS =", response.status_code)
         print("BODY =", response.text)
-        
-        response.raise_for_status()
 
-        data = response.json()
-
-        return jsonify(data)
+        return jsonify({
+            "url": response.request.url,
+            "status": response.status_code,
+            "body": response.text
+        })
 
     except Exception as e:
 
@@ -119,30 +119,10 @@ def search():
         print("STATUS =", response.status_code)
         print("BODY =", response.text)
 
-        response.raise_for_status()
-
-        data = response.json()
-
-        items = []
-
-        for item in data.get("Items", []):
-
-            product = item["Item"]
-
-            items.append({
-                "title": product.get("itemName"),
-                "price": product.get("itemPrice"),
-                "url": product.get("itemUrl"),
-                "image": product.get("mediumImageUrls", [{}])[0].get("imageUrl", ""),
-                "shop": product.get("shopName"),
-                "reviewAverage": product.get("reviewAverage"),
-                "reviewCount": product.get("reviewCount")
-            })
-
         return jsonify({
-            "success": True,
-            "count": len(items),
-            "items": items
+            "url": response.request.url,
+            "status": response.status_code,
+            "body": response.text
         })
 
     except Exception as e:
