@@ -89,6 +89,13 @@ def ranking():
                 "shop": product.get("shopName"),
                 "reviewAverage": product.get("reviewAverage"),
                 "reviewCount": product.get("reviewCount")
+
+                "description": product.get("itemCaption"),
+                "availability": product.get("availability"),
+                "pointRate": product.get("pointRate"),
+                "genreId": product.get("genreId"),
+                "shopUrl": product.get("shopUrl"),
+                "affiliateUrl": product.get("affiliateUrl")
             })
 
         return jsonify({
