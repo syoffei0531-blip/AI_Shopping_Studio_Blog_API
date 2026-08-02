@@ -56,7 +56,9 @@ def ranking():
     try:
 
         headers = {
-            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app"
+            "Origin": "https://aishoppingstudioblogapi-production.up.railway.app",
+            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app",
+            "User-Agent": "Mozilla/5.0"
         }
 
         response = requests.get(
@@ -117,9 +119,11 @@ def search():
     try:
 
         headers = {
-            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app"
+            "Origin": "https://aishoppingstudioblogapi-production.up.railway.app",
+            "Referer": "https://aishoppingstudioblogapi-production.up.railway.app",
+            "User-Agent": "Mozilla/5.0"
         }
-
+     
         response = requests.get(
             url,
             params=params,
