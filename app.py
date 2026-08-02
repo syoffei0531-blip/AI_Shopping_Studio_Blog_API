@@ -115,6 +115,10 @@ def search():
             timeout=20
         )
 
+        print("URL =", response.request.url)
+        print("STATUS =", response.status_code)
+        print("BODY =", response.text)
+
         response.raise_for_status()
 
         data = response.json()
