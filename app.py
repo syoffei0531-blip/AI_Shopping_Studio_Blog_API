@@ -9,8 +9,8 @@ app = Flask(__name__)
 # ==========================
 
 RAKUTEN_APP_ID = os.getenv("RAKUTEN_APP_ID")
+RAKUTEN_ACCESS_KEY = os.getenv("RAKUTEN_ACCESS_KEY")
 RAKUTEN_AFFILIATE_ID = os.getenv("RAKUTEN_AFFILIATE_ID")
-
 # ==========================
 # Home
 # ==========================
@@ -49,6 +49,7 @@ def ranking():
 
     params = {
         "applicationId": RAKUTEN_APP_ID,
+        "accessKey": RAKUTEN_ACCESS_KEY,
         "affiliateId": RAKUTEN_AFFILIATE_ID,
         "format": "json"
     }
