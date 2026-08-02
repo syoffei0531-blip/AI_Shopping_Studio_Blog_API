@@ -81,6 +81,10 @@ def ranking():
 @app.route("/search")
 def search():
 
+    print("APP_ID =", RAKUTEN_APP_ID)
+    print("ACCESS_KEY =", RAKUTEN_ACCESS_KEY)
+    print("AFFILIATE_ID =", RAKUTEN_AFFILIATE_ID)
+    
     keyword = request.args.get("keyword")
 
     if not keyword:
