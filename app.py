@@ -45,7 +45,7 @@ def ranking():
             "error": "RAKUTEN_APP_ID not configured"
         }), 500
 
-    url = "https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20220601"
+    url = "https://openapi.rakuten.co.jp/services/api/IchibaItem/Ranking/20220601"
 
     params = {
         "applicationId": RAKUTEN_APP_ID,
