@@ -1,6 +1,10 @@
 from flask import Flask, jsonify, request
 import os
 import requests
+import tempfile
+import base64
+
+from playwright.sync_api import sync_playwright
 
 app = Flask(__name__)
 
@@ -201,6 +205,28 @@ def search():
             "success": False,
             "message": str(e)
         }), 500
+        
+# ==========================
+# NOTE Draft API
+# ==========================
+
+@app.route("/note", methods=["POST"])
+def create_note():
+
+    data = request.json
+
+    if not data:
+        return jsonify({
+            "success": False,
+            "message": "No JSON received"
+        }), 400
+
+    return jsonify({
+        "success": True,
+        "message": "JSON received successfully",
+        "keys": list(data.keys())
+    })      
+        
 # ==========================
 # Start
 # ==========================
