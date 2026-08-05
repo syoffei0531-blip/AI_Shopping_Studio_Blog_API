@@ -266,7 +266,37 @@ def render_blog():
         "image": image_base64
     })
 
+# ==========================
+# Publish API
+# ==========================
 
+@app.route("/publish", methods=["POST"])
+def publish():
+
+    data = request.json
+
+    if not data:
+        return jsonify({
+            "success": False,
+            "message": "No JSON received"
+        }), 400
+
+    platform = data.get("platform", "")
+    title = data.get("title", "")
+    description = data.get("description", "")
+    tags = data.get("tags", [])
+    html = data.get("html", "")
+    image = data.get("image", "")
+
+    return jsonify({
+        "success": True,
+        "platform": platform,
+        "title": title,
+        "description": description,
+        "tags": tags,
+        "html": html,
+        "image": image
+    })
 
 # ==========================
 # Start
