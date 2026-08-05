@@ -221,11 +221,50 @@ def create_note():
             "message": "No JSON received"
         }), 400
 
+    platform = data.get("platform", "note")
+    
+    title = data.get("title", "")
+    html = data.get("html", "")
+
+    with tempfile.NamedTemporaryFile(
+        delete=False,
+        suffix=".html",
+        mode="w",
+        encoding="utf-8"
+    ) as f:
+
+        f.write(html)
+        html_file = f.name
+
+    with sync_playwright() as p:
+
+        browser = p.chromium.launch(headless=True)
+
+        page = browser.new_page(
+            viewport={
+                "width": 1200,
+                "height": 1600
+            }
+        )
+
+        page.goto("file://" + html_file)
+
+        page.screenshot(
+            path="blog.png",
+            full_page=True
+        )
+
+        browser.close()
+
+    with open("blog.png", "rb") as f:
+        image_base64 = base64.b64encode(f.read()).decode("utf-8")
+    
     return jsonify({
         "success": True,
-        "message": "JSON received successfully",
-        "keys": list(data.keys())
-    })      
+        "title": title,
+        "html": html,
+        "image": image_base64[:100]
+    })
         
 # ==========================
 # Start
