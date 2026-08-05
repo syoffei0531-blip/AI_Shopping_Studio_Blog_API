@@ -210,8 +210,8 @@ def search():
 # NOTE Draft API
 # ==========================
 
-@app.route("/note", methods=["POST"])
-def create_note():
+@app.route("/render", methods=["POST"])
+def render_blog():
 
     data = request.json
 
@@ -220,8 +220,6 @@ def create_note():
             "success": False,
             "message": "No JSON received"
         }), 400
-
-    platform = data.get("platform", "note")
     
     title = data.get("title", "")
     html = data.get("html", "")
@@ -262,8 +260,10 @@ def create_note():
     return jsonify({
         "success": True,
         "title": title,
+        "description": data.get("description", ""),
+        "tags": data.get("tags", []),
         "html": html,
-        "image": image_base64[:100]
+        "image": image_base64
     })
         
 # ==========================
