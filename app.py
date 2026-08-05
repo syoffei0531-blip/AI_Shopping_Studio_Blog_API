@@ -266,23 +266,7 @@ def render_blog():
         "image": image_base64
     })
 
-# ==========================
-# Image API
-# ==========================
 
-@app.route("/image")
-def get_image():
-
-    if not os.path.exists("blog.png"):
-        return jsonify({
-            "success": False,
-            "message": "blog.png not found"
-        }), 404
-
-    return send_file(
-        "blog.png",
-        mimetype="image/png"
-    )
 
 # ==========================
 # Start
