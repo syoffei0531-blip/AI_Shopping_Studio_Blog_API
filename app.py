@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 import os
 import requests
 import tempfile
@@ -265,7 +265,25 @@ def render_blog():
         "html": html,
         "image": image_base64
     })
-        
+
+# ==========================
+# Image API
+# ==========================
+
+@app.route("/image")
+def get_image():
+
+    if not os.path.exists("blog.png"):
+        return jsonify({
+            "success": False,
+            "message": "blog.png not found"
+        }), 404
+
+    return send_file(
+        "blog.png",
+        mimetype="image/png"
+    )
+
 # ==========================
 # Start
 # ==========================
