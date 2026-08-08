@@ -240,21 +240,23 @@ def render_blog():
 
         page = browser.new_page(
             viewport={
-                "width": 1200,
-                "height": 1600
+                "width":720,
+                "height":1280
             }
         )
 
         page.goto("file://" + html_file)
 
         page.screenshot(
-            path="blog.png",
+            path="blog.jpg",
+            type="jpeg",
+            quality=85,
             full_page=True
         )
 
         browser.close()
 
-    with open("blog.png", "rb") as f:
+    with open("blog.jpg","rb") as f:
         image_base64 = base64.b64encode(f.read()).decode("utf-8")
     
     return jsonify({
