@@ -258,11 +258,6 @@ def render_blog():
 
     with open("blog.jpg","rb") as f:
         image_base64 = base64.b64encode(f.read()).decode("utf-8")
-
-    html = html.replace(
-        "__QUESTION_IMAGE__",
-        f"data:image/jpeg;base64,{image_base64}"
-    )
     
     return jsonify({
         "success": True,
